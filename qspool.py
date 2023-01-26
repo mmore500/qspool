@@ -330,7 +330,7 @@ if __name__ == "__main__":
             )
 
             continuation_job_script_file.write(
-                continuation_job_script_contents
+                continuation_job_script_contents.strip()
             )
             continuation_job_script_file.file.close()
             os.chmod(continuation_job_script_file.name, 0o775)
