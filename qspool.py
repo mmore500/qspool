@@ -46,7 +46,7 @@ def instantiation_or_none(
 
 
 payload_job_script_contents_list = instantiation_or_none(
-    """{{ qspool::payload_job_script_contents_list_json }}""",
+    r"""{{ qspool::payload_job_script_contents_list_json }}""",
     apply=lambda x: json.loads(x, strict=False),
 )
 job_script_cc_path = instantiation_or_none(
@@ -62,9 +62,7 @@ qspool_job_title = instantiation_or_none(
     "{{ qspool::qspool_job_title }}",
 )
 this_script_template = instantiation_or_none(
-    """
-{{ qspool::this_script_template }}
-""",
+    r"""{{ qspool::this_script_template }}""",
 )
 
 
@@ -299,9 +297,7 @@ if __name__ == "__main__":
             .replace("{{ qspool::instantiate_with_empty }}", "", 1)
             .replace(
                 "{{ qspool::payload_job_script_contents_list_json }}",
-                json.dumps(payload_job_script_contents_list).replace(
-                    '"', r"\""
-                ),
+                json.dumps(payload_job_script_contents_list),
                 1,
             )
             .replace(
@@ -315,7 +311,7 @@ if __name__ == "__main__":
             .replace("{{ qspool::qspool_job_title }}", qspool_job_title, 1)
             .replace(
                 "{{ qspool::this_script_template }}",
-                this_script_template.replace('"', r"\""),
+                json.dumps(this_script_template)[1:-1],
                 1,
             )
         )
