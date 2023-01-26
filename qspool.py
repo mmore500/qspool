@@ -134,7 +134,7 @@ def is_queue_capacity_available(queue_capacity: int) -> bool:
     res = queue_size < queue_capacity - race_condition_safety_margin
 
     if not res:
-        logging.info(f"queue capacity unavailable {queue_size=}")
+        logging.info(f"queue capacity unavailable queue_size={queue_size}")
     return res
 
 
@@ -147,7 +147,7 @@ def is_at_least_1hr_job_time_remaining(start_time) -> bool:
     res = elapsed_seconds < available_job_seconds - hour_num_seconds
 
     if not res:
-        logging.info(f"insufficient job time remaining {elapsed_seconds=}")
+        logging.info(f"insufficient job time remaining elapsed_seconds={elapsed_seconds}")
     return res
 
 
@@ -164,7 +164,7 @@ def make_qspool_job_name(
 
 if __name__ == "__main__":
     start_time = time.time()
-    logging.info(f"{start_time=}")
+    logging.info(f"start_time={start_time}")
 
     if not is_this_script_instantiated():
         logging.info("running kickoff routine...")
@@ -242,18 +242,18 @@ if __name__ == "__main__":
     logging.info("running configuration setup and logging routine...")
 
     assert job_log_path is not None
-    logging.info(f"{job_log_path=}")
+    logging.info(f"job_log_path={job_log_path}")
     pathlib.Path(job_log_path).mkdir(parents=True, exist_ok=True)
 
     assert job_script_cc_path is not None
-    logging.info(f"{job_script_cc_path=}")
+    logging.info(f"job_script_cc_path={job_script_cc_path}")
     pathlib.Path(job_script_cc_path).mkdir(parents=True, exist_ok=True)
 
     assert queue_capacity is not None
-    logging.info(f"{queue_capacity=}")
+    logging.info(f"queue_capacity={queue_capacity}")
 
     assert qspool_job_title is not None
-    logging.info(f"{qspool_job_title=}")
+    logging.info(f"qspool_job_title={qspool_job_title}")
 
     if this_script_template is None:
         this_script_template = get_this_script_source()
