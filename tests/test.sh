@@ -47,7 +47,7 @@ cmp --silent \
     "assets/example2.slurm.sh"
 
 test -f "/tmp/job_script_cc_path/job_id=690+ext=.slurm.sh"
-test -f "/tmp/touched-by-example.slurm.sh"
+test -f "/tmp/touched-by-example2.slurm.sh"
 
 echo
 echo "# TEST CASE 3 ##########################################################"
@@ -68,4 +68,5 @@ cmp --silent \
     "assets/example2.slurm.sh"
 
 test -f "/tmp/job_script_cc_path/job_id=690+ext=.slurm.sh"
-test -f "/tmp/touched-by-example.slurm.sh"
+test -f "/tmp/touched-by-example1.slurm.sh"
+test -f "/tmp/touched-by-example2.slurm.sh"
