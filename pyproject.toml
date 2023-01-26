@@ -21,6 +21,7 @@ classifiers = [
 ]
 
 keywords = ["slurm", "high-performance computing", "cluster computing"]
+license = {text = "MIT license"}
 
 [project.urls]
 homepage = "https://github.com/mmore500/qspool"
