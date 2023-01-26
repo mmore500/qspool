@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
-# SBATCH --job-name={{ qspool::qspool_job_name }}  # Job name
-# SBATCH --mail-type=FAIL                          # Mail events
-# SBATCH --ntasks=1                       # Run on a single CPU
-# SBATCH --mem=1gb                        # Job memory request
-# SBATCH --time=04:00:00                  # Time limit hrs:min:sec
-# SBATCH --output={{ qspool::job_log_path }}/a=log+{{ qspool::qspool_job_name }}+slurm_job_id=%a+ext=.txt
+#SBATCH --job-name="{{ qspool::qspool_job_name }}"  # Job name
+#SBATCH --mail-type=FAIL                          # Mail events
+#SBATCH --ntasks=1                       # Run on a single CPU
+#SBATCH --mem=1gb                        # Job memory request
+#SBATCH --time=04:00:00                  # Time limit hrs:min:sec
+#SBATCH --output="{{ qspool::job_log_path }}/a=log+{{ qspool::qspool_job_name }}+slurm_job_id=%a+ext=.txt"
 
 __version__ = "0.2.0"
 __author__ = "Matthew Andres moreno"
