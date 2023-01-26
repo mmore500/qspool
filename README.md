@@ -61,6 +61,8 @@ python3 -m pip install qspool
 qspool [ARGS]
 ```
 
+`qspool` has zero dependencies, so no setup or maintenance is required to use it.
+
 # How it Works
 
 ```
