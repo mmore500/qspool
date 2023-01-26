@@ -148,7 +148,9 @@ def is_at_least_1hr_job_time_remaining(start_time) -> bool:
     res = elapsed_seconds < available_job_seconds - hour_num_seconds
 
     if not res:
-        logging.info(f"insufficient job time remaining elapsed_seconds={elapsed_seconds}")
+        logging.info(
+            f"insufficient job time remaining elapsed_seconds={elapsed_seconds}"
+        )
     return res
 
 
