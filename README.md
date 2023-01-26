@@ -58,7 +58,7 @@ python3 "$(tmpfile="$(mktemp)"; curl -s https://raw.githubusercontent.com/mmore5
 pip installation:
 ```bash
 python3 -m pip install qspool
-qspool [ARGS]
+python3 -m qspool [ARGS]
 ```
 
 `qspool` has zero dependencies, so no setup or maintenance is required to use it.
