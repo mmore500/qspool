@@ -52,7 +52,7 @@ options:
 
 no installation:
 ```bash
-python3 "$(tmpfile="$(mktemp)"; curl -s https://raw.githubusercontent.com/mmore500/qspool/master/qspool.py > "${tmpfile}"; echo "${tmpfile}")" [ARGS]
+python3 "$(tmpfile="$(mktemp)"; curl -s https://raw.githubusercontent.com/mmore500/qspool/v0.1.3/qspool.py > "${tmpfile}"; echo "${tmpfile}")" [ARGS]
 ```
 
 pip installation:
