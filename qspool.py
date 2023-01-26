@@ -165,7 +165,9 @@ if __name__ == "__main__":
 
     if not is_this_script_instantiated():
         logging.info("running kickoff routine...")
-        parser = argparse.ArgumentParser()
+        parser = argparse.ArgumentParser(
+            formatter_class=argparse.ArgumentDefaultsHelpFormatter
+        )
         parser.add_argument(
             "payload_job_script_paths",
             help="What scripts to spool onto slurm queue?",
