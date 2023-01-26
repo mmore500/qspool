@@ -166,6 +166,7 @@ def make_qspool_job_name(
 
 
 if __name__ == "__main__":
+    logging.info(f"__version__={__version__}")
     start_time = time.time()
     logging.info(f"start_time={start_time}")
 
