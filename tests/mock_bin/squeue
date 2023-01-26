@@ -1,0 +1,4 @@
+#!/bin/bash
+
+echo "JOBID PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON)"
+echo "3587600 general-s serial_j mmore500  R       0:02      1 css-122"

@@ -1,0 +1,6 @@
+#!/bin/bash
+
+>&2 echo "sbatch arg ${1}"
+>&2 "${1}"
+>&2 cp "${1}" "/tmp/sbatched"
+echo "Submitted batch job $(cat "${1}" | wc -l )"
