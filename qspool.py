@@ -6,6 +6,9 @@
 # SBATCH --time=04:00:00                  # Time limit hrs:min:sec
 # SBATCH --output={{ qspool::job_log_path }}/a=log+{{ qspool::qspool_job_name }}+slurm_job_id=%a+ext=.txt
 
+__version__ = "0.0.0"
+__author__ = "Matthew Andres moreno"
+
 import argparse
 import inspect
 import itertools as it
