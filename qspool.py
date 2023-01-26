@@ -74,11 +74,12 @@ def run_until_success(command: typing.List[str]) -> typing.Any:
         try:
             res = subprocess.run(
                 command,
-                capture_output=True,
                 check=True,
                 encoding="ascii",
                 env=os.environ.copy(),
                 shell=True,
+                stderr=subprocess.PIPE,
+                stdout=subprocess.PIPE,
             )
             if res.stderr:
                 logging.info(f"command {command} wrote to stderr")
