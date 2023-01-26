@@ -62,6 +62,7 @@ python3 -m qspool [ARGS]
 ```
 
 `qspool` has zero dependencies, so no setup or maintenance is required to use it.
+Compatible all the way back to Python 3.6, so it will work on your cluster's ancient Python install.
 
 # How it Works
 
