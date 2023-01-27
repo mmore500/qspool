@@ -56,10 +56,10 @@ job_log_path = instantiation_or_none(
     "{{ qspool::job_log_path }}",
 )
 queue_capacity = instantiation_or_none(
-    "{{ qspool::queue_capacity }}", apply=eval
+    "{{ qspool::queue_capacity }}", apply=int
 )
 qspooler_chain_depth = instantiation_or_none(
-    "{{ qspool::qspooler_chain_depth }}",
+    "{{ qspool::qspooler_chain_depth }}", apply=int
 )
 qspooler_job_title = instantiation_or_none(
     "{{ qspool::qspooler_job_title }}",
