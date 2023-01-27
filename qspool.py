@@ -58,8 +58,8 @@ job_log_path = instantiation_or_none(
 queue_capacity = instantiation_or_none(
     "{{ qspool::queue_capacity }}", apply=eval
 )
-qspool_job_title = instantiation_or_none(
-    "{{ qspool::qspool_job_title }}",
+spooler_job_title = instantiation_or_none(
+    "{{ qspool::spooler_job_title }}",
 )
 this_script_template = instantiation_or_none(
     r""" {{ qspool::this_script_template }} """,
@@ -154,13 +154,13 @@ def is_at_least_1hr_job_time_remaining(start_time) -> bool:
 
 
 def make_qspool_job_name(
-    qspool_job_title: str,
+    spooler_job_title: str,
     payload_job_scripts_list: typing.List[str],
 ) -> str:
-    return f"""what=qspool+payload_size={
+    return f"""what=qspooler+payload_size={
         len(payload_job_scripts_list)
     }+title={
-        qspool_job_title
+        spooler_job_title
     }"""
 
 
@@ -204,9 +204,9 @@ if __name__ == "__main__":
             type=int,
         )
         parser.add_argument(
-            "--qspool-job_title",
-            default="spooler",
-            help="What title should be included in spool job name?",
+            "--spooler-job-title",
+            default="none",
+            help="What title should be included in spooler job names?",
             type=str,
         )
         args = parser.parse_args()
@@ -240,7 +240,7 @@ if __name__ == "__main__":
         job_log_path = os.path.expanduser(args.job_log_path)
         job_script_cc_path = os.path.expanduser(args.job_script_cc_path)
         queue_capacity = args.queue_capacity
-        qspool_job_title = args.qspool_job_title
+        spooler_job_title = args.spooler_job_title
 
     logging.info("running configuration setup and logging routine...")
 
@@ -255,8 +255,8 @@ if __name__ == "__main__":
     assert queue_capacity is not None
     logging.info(f"queue_capacity={queue_capacity}")
 
-    assert qspool_job_title is not None
-    logging.info(f"qspool_job_title={qspool_job_title}")
+    assert spooler_job_title is not None
+    logging.info(f"spooler_job_title={spooler_job_title}")
 
     if this_script_template is None:
         this_script_template = get_this_script_source()
@@ -304,12 +304,12 @@ if __name__ == "__main__":
             .replace(
                 "{{ qspool::qspool_job_name }}",
                 make_qspool_job_name(
-                    qspool_job_title, payload_job_script_contents_list
+                    spooler_job_title, payload_job_script_contents_list
                 ),
                 2,
             )
             .replace("{{ qspool::queue_capacity }}", str(queue_capacity), 1)
-            .replace("{{ qspool::qspool_job_title }}", qspool_job_title, 1)
+            .replace("{{ qspool::spooler_job_title }}", spooler_job_title, 1)
             .replace(
                 "{{ qspool::this_script_template }}",
                 json.dumps(this_script_template),
