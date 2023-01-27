@@ -18,7 +18,7 @@ tree .
 
 The `qspool` script will feed your job scripts onto the queue as space becomes available.
 ```bash
-qspool *.slurm.sh
+python3 -m qspool *.slurm.sh
 ```
 
 The `qspool` script creates a slurm job that submits your job scripts.
