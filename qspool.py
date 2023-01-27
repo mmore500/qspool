@@ -5,6 +5,7 @@
 #SBATCH --mem=1gb                        # Job memory request
 #SBATCH --time=04:00:00                  # Time limit hrs:min:sec
 #SBATCH --output="{{ qspool::job_log_path }}/a=log+{{ qspool::qspool_job_name }}+slurm_job_id=%j+ext=.txt"
+#SBATCH --requeue  # Job may be requeued after node failure
 
 __version__ = "0.3.2"
 __author__ = "Matthew Andres moreno"
