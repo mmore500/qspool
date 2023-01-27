@@ -28,7 +28,9 @@ cmp --silent \
     "/tmp/job_script_cc_path/job_id=6+ext=.slurm.sh" \
     "assets/example1.slurm.sh"
 
-test -f "/tmp/job_script_cc_path/job_id=367+ext=.slurm.sh"
+test -f "/tmp/job_script_cc_path/job_id=$( \
+    cat ../qspool.py | tail -n +2 | wc -l \
+  )+ext=.slurm.sh"
 test -f "/tmp/touched-by-example1.slurm.sh"
 
 echo
@@ -46,7 +48,9 @@ cmp --silent \
     "/tmp/job_script_cc_path/job_id=8+ext=.slurm.sh" \
     "assets/example2.slurm.sh"
 
-test -f "/tmp/job_script_cc_path/job_id=367+ext=.slurm.sh"
+test -f "/tmp/job_script_cc_path/job_id=$( \
+    cat ../qspool.py | tail -n +2 | wc -l \
+  )+ext=.slurm.sh"
 test -f "/tmp/touched-by-example2.slurm.sh"
 
 echo
@@ -67,6 +71,8 @@ cmp --silent \
     "/tmp/job_script_cc_path/job_id=8+ext=.slurm.sh" \
     "assets/example2.slurm.sh"
 
-test -f "/tmp/job_script_cc_path/job_id=367+ext=.slurm.sh"
+test -f "/tmp/job_script_cc_path/job_id=$( \
+    cat ../qspool.py | tail -n +2 | wc -l \
+  )+ext=.slurm.sh"
 test -f "/tmp/touched-by-example1.slurm.sh"
 test -f "/tmp/touched-by-example2.slurm.sh"
