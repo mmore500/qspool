@@ -21,6 +21,11 @@ The `qspool` script will feed your job scripts onto the queue as space becomes a
 python3 -m qspool *.slurm.sh
 ```
 
+You can also provide job names via stdin, which is useful for very large job batches.
+```bash
+find . -maxdepth 1 -name '*.slurm.sh' | python3 -m qspool
+```
+
 The `qspool` script creates a slurm job that submits your job scripts.
 When queue capacity fills, this `qspool` job will schedule a follow-up job to submit any remaining job scripts.
 This process continues until all job scripts have been submitted.
