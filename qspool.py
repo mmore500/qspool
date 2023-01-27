@@ -65,7 +65,7 @@ qspooler_job_title = instantiation_or_none(
     "{{ qspool::qspooler_job_title }}",
 )
 this_script_template = instantiation_or_none(
-    r""" {{ qspool::this_script_template }} """,
+    r""" {{ qspool::this_script_template }} """,  # spaces prevent first/last "
     apply=lambda x: json.loads(x, strict=False),
 )
 
