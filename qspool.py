@@ -62,7 +62,8 @@ qspool_job_title = instantiation_or_none(
     "{{ qspool::qspool_job_title }}",
 )
 this_script_template = instantiation_or_none(
-    r"""{{ qspool::this_script_template }}""",
+    r""" {{ qspool::this_script_template }} """,
+    apply=lambda x: json.loads(x, strict=False),
 )
 
 
@@ -311,7 +312,7 @@ if __name__ == "__main__":
             .replace("{{ qspool::qspool_job_title }}", qspool_job_title, 1)
             .replace(
                 "{{ qspool::this_script_template }}",
-                json.dumps(this_script_template)[1:-1],
+                json.dumps(this_script_template),
                 1,
             )
         )
