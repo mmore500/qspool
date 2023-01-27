@@ -58,11 +58,11 @@ job_log_path = instantiation_or_none(
 queue_capacity = instantiation_or_none(
     "{{ qspool::queue_capacity }}", apply=eval
 )
-spooler_job_title = instantiation_or_none(
-    "{{ qspool::spooler_job_title }}",
+qspooler_chain_depth = instantiation_or_none(
+    "{{ qspool::qspooler_chain_depth }}",
 )
-spooler_chain_depth = instantiation_or_none(
-    "{{ qspool::spooler_chain_depth }}",
+qspooler_job_title = instantiation_or_none(
+    "{{ qspool::qspooler_job_title }}",
 )
 this_script_template = instantiation_or_none(
     r""" {{ qspool::this_script_template }} """,
@@ -157,16 +157,16 @@ def is_at_least_1hr_job_time_remaining(start_time) -> bool:
 
 
 def make_qspool_job_name(
-    spooler_job_title: str,
+    qspooler_job_title: str,
     payload_job_scripts_list: typing.List[str],
-    spooler_chain_depth: int,
+    qspooler_chain_depth: int,
 ) -> str:
     return f"""what=qspooler+depth={
-        spooler_chain_depth
+        qspooler_chain_depth
     }+payload_size={
         len(payload_job_scripts_list)
     }+title={
-        spooler_job_title
+        qspooler_job_title
     }"""
 
 
@@ -210,9 +210,9 @@ if __name__ == "__main__":
             type=int,
         )
         parser.add_argument(
-            "--spooler-job-title",
+            "--qspooler-job-title",
             default="none",
-            help="What title should be included in spooler job names?",
+            help="What title should be included in qspooler job names?",
             type=str,
         )
         args = parser.parse_args()
@@ -246,8 +246,8 @@ if __name__ == "__main__":
         job_log_path = os.path.expanduser(args.job_log_path)
         job_script_cc_path = os.path.expanduser(args.job_script_cc_path)
         queue_capacity = args.queue_capacity
-        spooler_chain_depth = 0
-        spooler_job_title = args.spooler_job_title
+        qspooler_chain_depth = 0
+        qspooler_job_title = args.qspooler_job_title
 
     logging.info("running configuration setup and logging routine...")
 
@@ -262,11 +262,11 @@ if __name__ == "__main__":
     assert queue_capacity is not None
     logging.info(f"queue_capacity={queue_capacity}")
 
-    assert spooler_chain_depth is not None
-    logging.info(f"spooler_chain_depth={spooler_chain_depth}")
+    assert qspooler_chain_depth is not None
+    logging.info(f"qspooler_chain_depth={qspooler_chain_depth}")
 
-    assert spooler_job_title is not None
-    logging.info(f"spooler_job_title={spooler_job_title}")
+    assert qspooler_job_title is not None
+    logging.info(f"qspooler_job_title={qspooler_job_title}")
 
     if this_script_template is None:
         this_script_template = get_this_script_source()
@@ -314,17 +314,17 @@ if __name__ == "__main__":
             .replace(
                 "{{ qspool::qspool_job_name }}",
                 make_qspool_job_name(
-                    spooler_job_title,
+                    qspooler_job_title,
                     payload_job_script_contents_list,
-                    spooler_chain_depth + 1
+                    qspooler_chain_depth + 1
                 ),
                 2,
             )
             .replace("{{ qspool::queue_capacity }}", str(queue_capacity), 1)
-            .replace("{{ qspool::spooler_job_title }}", spooler_job_title, 1)
+            .replace("{{ qspool::qspooler_job_title }}", qspooler_job_title, 1)
             .replace(
-                "{{ qspool::spooler_chain_depth }}",
-                str(spooler_chain_depth + 1),
+                "{{ qspool::qspooler_chain_depth }}",
+                str(qspooler_chain_depth + 1),
                 1,
             )
             .replace(
