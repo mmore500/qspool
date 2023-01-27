@@ -26,8 +26,8 @@ When queue capacity fills, this `qspool` job will schedule a follow-up job to su
 This process continues until all job scripts have been submitted.
 
 ```
-usage: qspool [-h] [--payload-job-script-paths-infile PAYLOAD_JOB_SCRIPT_PATHS_INFILE] [--job-log-path JOB_LOG_PATH] [--job-script-cc-path JOB_SCRIPT_CC_PATH]
-                 [--queue-capacity QUEUE_CAPACITY] [--qspool-job_title QSPOOL_JOB_TITLE]
+usage: qspool.py [-h] [--payload-job-script-paths-infile PAYLOAD_JOB_SCRIPT_PATHS_INFILE] [--job-log-path JOB_LOG_PATH] [--job-script-cc-path JOB_SCRIPT_CC_PATH]
+                 [--queue-capacity QUEUE_CAPACITY] [--qspooler-job-title QSPOOLER_JOB_TITLE]
                  [payload_job_script_paths ...]
 
 positional arguments:
@@ -44,8 +44,8 @@ options:
                         Where should copies of submitted job scripts be kept? (default: ~/slurm_job_script_cc/)
   --queue-capacity QUEUE_CAPACITY
                         How many jobs can be running or waiting at once? (default: 1000)
-  --qspool-job_title QSPOOL_JOB_TITLE
-                        What title should be included in spool job name? (default: spooler)
+  --qspooler-job-title QSPOOLER_JOB_TITLE
+                        What title should be included in qspooler job names? (default: none)
 ```
 
 # Installation
@@ -69,32 +69,32 @@ Compatible all the way back to Python 3.6, so it will work on your cluster's anc
 ```
 qspool
   * read contents of target slurm scripts
-  * instantiate spooler job script w/ target slurm scripts embedded
-  * submit spooler job script to slurm queue
+  * instantiate qspooler job script w/ target slurm scripts embedded
+  * submit qspooler job script to slurm queue
 ```
 
 ⬇️ ⬇️ ⬇️
 
 ```
-spooler job 1
+qspooler job 1
   * submit embedded target slurm scripts one by one until queue is almost full
-  * instantiate spooler job script w/ remaining target slurm scripts embedded
-  * submit spooler job script to slurm queue
+  * instantiate qspooler job script w/ remaining target slurm scripts embedded
+  * submit qspooler job script to slurm queue
 ```
 
 ⬇️ ⬇️ ⬇️
 
 ```
-spooler job 2
+qspooler job 2
   * submit embedded target slurm scripts one by one until queue is almost full
-  * instantiate spooler job script w/ remaining target slurm scripts embedded
-  * submit spooler job script to slurm queue
+  * instantiate qspooler job script w/ remaining target slurm scripts embedded
+  * submit qspooler job script to slurm queue
 ```
 
 ...
 
 ```
-spooler job n
+qspooler job n
   * submit embedded target slurm scripts one by one
   * no embedded target slurm scripts remain
   * exit
