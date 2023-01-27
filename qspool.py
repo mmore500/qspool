@@ -61,6 +61,9 @@ queue_capacity = instantiation_or_none(
 spooler_job_title = instantiation_or_none(
     "{{ qspool::spooler_job_title }}",
 )
+spooler_chain_depth = instantiation_or_none(
+    "{{ qspool::spooler_chain_depth }}",
+)
 this_script_template = instantiation_or_none(
     r""" {{ qspool::this_script_template }} """,
     apply=lambda x: json.loads(x, strict=False),
@@ -156,8 +159,11 @@ def is_at_least_1hr_job_time_remaining(start_time) -> bool:
 def make_qspool_job_name(
     spooler_job_title: str,
     payload_job_scripts_list: typing.List[str],
+    spooler_chain_depth: int,
 ) -> str:
-    return f"""what=qspooler+payload_size={
+    return f"""what=qspooler+depth={
+        spooler_chain_depth
+    }+payload_size={
         len(payload_job_scripts_list)
     }+title={
         spooler_job_title
@@ -240,6 +246,7 @@ if __name__ == "__main__":
         job_log_path = os.path.expanduser(args.job_log_path)
         job_script_cc_path = os.path.expanduser(args.job_script_cc_path)
         queue_capacity = args.queue_capacity
+        spooler_chain_depth = 0
         spooler_job_title = args.spooler_job_title
 
     logging.info("running configuration setup and logging routine...")
@@ -254,6 +261,9 @@ if __name__ == "__main__":
 
     assert queue_capacity is not None
     logging.info(f"queue_capacity={queue_capacity}")
+
+    assert spooler_chain_depth is not None
+    logging.info(f"spooler_chain_depth={spooler_chain_depth}")
 
     assert spooler_job_title is not None
     logging.info(f"spooler_job_title={spooler_job_title}")
@@ -304,12 +314,19 @@ if __name__ == "__main__":
             .replace(
                 "{{ qspool::qspool_job_name }}",
                 make_qspool_job_name(
-                    spooler_job_title, payload_job_script_contents_list
+                    spooler_job_title,
+                    payload_job_script_contents_list,
+                    spooler_chain_depth + 1
                 ),
                 2,
             )
             .replace("{{ qspool::queue_capacity }}", str(queue_capacity), 1)
             .replace("{{ qspool::spooler_job_title }}", spooler_job_title, 1)
+            .replace(
+                "{{ qspool::spooler_chain_depth }}",
+                str(spooler_chain_depth + 1),
+                1,
+            )
             .replace(
                 "{{ qspool::this_script_template }}",
                 json.dumps(this_script_template),
