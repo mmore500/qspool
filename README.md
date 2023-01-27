@@ -99,3 +99,10 @@ qspooler job n
   * no embedded target slurm scripts remain
   * exit
 ```
+
+## Related Software
+
+[`roll_q`](https://github.com/FergusonAJ/roll_q) uses a similar approach to solve this problem.
+`roll_q` differs in implementation strategy.
+`roll_q` tracks submission progress via an index variable in a file associated with a job batch.
+`qspool` embeds jobs in the submission worker script itself.
