@@ -8,7 +8,7 @@
 #SBATCH --requeue  # Job may be requeued after node failure
 
 __version__ = "0.3.3"
-__author__ = "Matthew Andres moreno"
+__author__ = "Matthew Andres Moreno"
 
 import argparse
 import inspect
