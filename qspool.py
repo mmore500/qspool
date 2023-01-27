@@ -18,6 +18,7 @@ import os
 import pathlib
 import re
 import shutil
+import socket
 import subprocess
 import sys
 import tempfile
@@ -174,6 +175,7 @@ if __name__ == "__main__":
     logging.info(f"__version__={__version__}")
     start_time = time.time()
     logging.info(f"start_time={start_time}")
+    logging.info(f"hostname={socket.gethostname()}")
 
     if not is_this_script_instantiated():
         logging.info("running kickoff routine...")
