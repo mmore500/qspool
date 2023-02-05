@@ -11,6 +11,7 @@ __version__ = "0.3.3"
 __author__ = "Matthew Andres Moreno"
 
 import argparse
+from base64 import b64encode, b64decode
 import inspect
 import itertools as it
 import json
@@ -25,6 +26,7 @@ import sys
 import tempfile
 import time
 import typing
+import zlib
 
 logging.basicConfig(
     format="%(asctime)s %(levelname)-8s %(message)s",
@@ -49,7 +51,7 @@ def instantiation_or_none(
 
 payload_job_script_contents_list = instantiation_or_none(
     r"""{{ qspool::payload_job_script_contents_list_json }}""",
-    apply=lambda x: json.loads(x, strict=False),
+    apply=lambda x: json.loads(zlib.decompress(b64decode(x)), strict=False),
 )
 job_script_cc_path = instantiation_or_none(
     "{{ qspool::job_script_cc_path }}",
@@ -311,7 +313,13 @@ if __name__ == "__main__":
             .replace("{{ qspool::instantiate_with_empty }}", "", 1)
             .replace(
                 "{{ qspool::payload_job_script_contents_list_json }}",
-                json.dumps(payload_job_script_contents_list),
+                b64encode(
+                    zlib.compress(
+                        json.dumps(payload_job_script_contents_list).encode(
+                            "utf-8"
+                        )
+                    )
+                ).decode("ascii"),
                 1,
             )
             .replace(
