@@ -238,6 +238,10 @@ if __name__ == "__main__":
             logging.info(
                 f"{len(payload_job_script_paths)} payload script paths provided"
             )
+            logging.info(
+                f"{len(set(payload_job_script_paths))} distinct payload script "
+                "paths provided"
+            )
 
         payload_job_script_contents_list = []
         for payload_job_script_path in payload_job_script_paths:
