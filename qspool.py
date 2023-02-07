@@ -273,6 +273,18 @@ if __name__ == "__main__":
     assert qspooler_job_title is not None
     logging.info(f"qspooler_job_title={qspooler_job_title}")
 
+    assert payload_job_script_contents_list is not None
+    logging.info(
+        f"""{
+            len(payload_job_script_contents_list)
+        } jobs in payload_job_script_contents_list"""
+    )
+    logging.info(
+        f"""{
+            len(set(payload_job_script_contents_list))
+        } distinct jobs in payload_job_script_contents_list"""
+    )
+
     if this_script_template is None:
         this_script_template = get_this_script_source()
 
@@ -298,12 +310,22 @@ if __name__ == "__main__":
                 )
 
                 sbatch(script_file.name, job_script_cc_path)
+                logging.info(
+                    f"""{
+                        len(payload_job_script_contents_list)
+                    } payload jobs remaining"""
+                )
 
     if payload_job_script_contents_list:
         logging.info(
             f"""{
                 len(payload_job_script_contents_list)
             } payload jobs remaining; creating qspool continuation job"""
+        )
+        logging.info(
+            f"""{
+                len(set(payload_job_script_contents_list))
+            } distinct jobs in payload_job_script_contents_list"""
         )
         continuation_job_script_contents = (
             this_script_template.replace(
