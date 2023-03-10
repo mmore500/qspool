@@ -7,7 +7,7 @@
 #SBATCH --output="{{ qspool::job_log_path }}/a=log+{{ qspool::qspool_job_name }}+slurm_job_id=%j+ext=.txt"
 #SBATCH --requeue  # Job may be requeued after node failure
 
-__version__ = "0.4.1"
+__version__ = "0.4.2"
 __author__ = "Matthew Andres Moreno"
 
 import argparse
