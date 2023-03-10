@@ -149,7 +149,7 @@ def is_at_least_1hr_job_time_remaining(start_time) -> bool:
     # assumes 4 hour job time
     available_job_seconds = 4 * 60 * 60
     hour_num_seconds = 60 * 60
-    elapsed_seconds = start_time - time.time()
+    elapsed_seconds = time.time() - start_time
 
     res = elapsed_seconds < available_job_seconds - hour_num_seconds
 
