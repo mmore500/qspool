@@ -146,16 +146,30 @@ def is_queue_capacity_available(queue_capacity: int) -> bool:
 
 
 def is_at_least_1hr_job_time_remaining(start_time) -> bool:
+    cur_time=time.time()
+
     # assumes 4 hour job time
     available_job_seconds = 4 * 60 * 60
     hour_num_seconds = 60 * 60
-    elapsed_seconds = time.time() - start_time
+    elapsed_seconds = cur_time - start_time
 
-    res = elapsed_seconds < available_job_seconds - hour_num_seconds
+    threshold_seconds = available_job_seconds - hour_num_seconds
+
+    logging.info("testing job time remaining")
+    logging.info(f"start_time={start_time}")
+    logging.info(f"cur_time={cur_time}")
+    logging.info(f"elapsed_seconds={elapsed_seconds}")
+    logging.info(f"threshold_seconds={threshold_seconds}")
+
+    res = elapsed_seconds < threshold_seconds
 
     if not res:
         logging.info(
             f"insufficient job time remaining elapsed_seconds={elapsed_seconds}"
+        )
+    else:
+        logging.info(
+            f"sufficient job time remaining elapsed_seconds={elapsed_seconds}"
         )
     return res
 
