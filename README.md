@@ -44,9 +44,9 @@ options:
   --payload-job-script-paths-infile PAYLOAD_JOB_SCRIPT_PATHS_INFILE
                         Where to read script paths to spool onto slurm queue? (default: <_io.TextIOWrapper name='<stdin>' mode='r' encoding='utf-8'>)
   --job-log-path JOB_LOG_PATH
-                        Where should logs for qspool jobs be written? (default: ~/slurm_job_log/)
+                        Where should logs for qspool jobs be written? (default: ~/joblog/)
   --job-script-cc-path JOB_SCRIPT_CC_PATH
-                        Where should copies of submitted job scripts be kept? (default: ~/slurm_job_script_cc/)
+                        Where should copies of submitted job scripts be kept? (default: ~/jobscript/)
   --queue-capacity QUEUE_CAPACITY
                         How many jobs can be running or waiting at once? (default: 1000)
   --qspooler-job-title QSPOOLER_JOB_TITLE
