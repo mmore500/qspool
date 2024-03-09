@@ -212,13 +212,13 @@ if __name__ == "__main__":
         )
         parser.add_argument(
             "--job-log-path",
-            default="~/slurm_job_log/",
+            default="~/joblog/",
             help="Where should logs for qspool jobs be written?",
             type=str,
         )
         parser.add_argument(
             "--job-script-cc-path",
-            default="~/slurm_job_script_cc/",
+            default="~/jobscript/",
             help="Where should copies of submitted job scripts be kept?",
             type=str,
         )
