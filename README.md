@@ -1,4 +1,8 @@
 [![DOI](https://zenodo.org/badge/593737285.svg)](https://zenodo.org/doi/10.5281/zenodo.10864602)
+[![PyPI Status](https://img.shields.io/pypi/v/alifedata-phyloinformatics-convert.svg)](https://pypi.python.org/pypi/alifedata-phyloinformatics-convert)
+[![CI Status](https://github.com/mmore500/alifedata-phyloinformatics-convert/actions/workflows/CI.yml/badge.svg)](https://github.com/mmore500/alifedata-phyloinformatics-convert/actions/workflows/CI.yml)
+
+**qspool** is a dependency-free solution to spool jobs into SLURM scheduler without exceeding queue capacity limits.
 
 # Usage
 
