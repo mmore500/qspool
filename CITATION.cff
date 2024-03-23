@@ -1,0 +1,14 @@
+cff-version: 1.1.0
+message: "If you use this software, please cite it as below."
+title: 'qspool: a Python library to orchestrate SLURM jobs'
+abstract: "qspool is a dependency-free solution to spool jobs into SLURM scheduler without exceeding queue capacity limits."
+authors:
+- family-names: Moreno
+  given-names: Matthew Andres
+  orcid: 0000-0003-4726-4479
+date-released: 2023-03-23
+doi: 10.5281/zenodo.10864602
+license: MIT
+repository-code: https://github.com/mmore500/qspool
+url: "https://github.com/mmore500/qspool"
+version: v1.0.1
