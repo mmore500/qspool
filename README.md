@@ -1,3 +1,5 @@
+[![DOI](https://zenodo.org/badge/593737285.svg)](https://zenodo.org/doi/10.5281/zenodo.10864602)
+
 # Usage
 
 You need to submit more slurm scripts than fit on the queue at once.
@@ -105,9 +107,30 @@ qspooler job n
   * exit
 ```
 
-## Related Software
+# Related Software
 
 [`roll_q`](https://github.com/FergusonAJ/roll_q) uses a similar approach to solve this problem.
 `roll_q` differs in implementation strategy.
 `roll_q` tracks submission progress via an index variable in a file associated with a job batch.
 `qspool` embeds jobs in the submission worker script itself.
+
+# Citing
+
+If qspool is used in scientific publication, please cite it as
+
+> Matthew Andres Moreno (2024). mmore500/qspool. Zenodo. https://doi.org/10.5281/zenodo.10864602
+
+```bibtex
+@software{moreno2024qspool,
+  author = {Matthew Andres Moreno},
+  title = {mmore500/qspool},
+  month = mar,
+  year = 2024,
+  publisher = {Zenodo},
+  doi = {10.5281/zenodo.10864602},
+  url = {https://zenodo.org/doi/10.5281/zenodo.10864602}
+}
+```
+
+And don't forget to leave a [star on GitHub](https://github.com/mmore500/qspool/stargazers)!
+
